@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  #labels:
+  #  app: certbot-generator
+  name: certbot
+spec:
+  template:
+    metadata:
+      labels:
+        app: certbot-generator
+    spec:
+      containers:
+        - name: certbot
+          image: ishankhare07/certbot:0.0.6
+          #command: ["/script.sh"]
+          #command: ["yes"]
+          #args: ["certonly", "--noninteractive", "--agree-tos", "--staging", "--standalone", "-d", "staging.ishankhare.com", "-m", "me@ishankhare.com"]
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+      restartPolicy: "Never"
+
